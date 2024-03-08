@@ -1,6 +1,6 @@
 import {toElement} from '../lib/utils/toElement'
 
-function toDoItemTemplate({todo, category, status, uid}) {
+function toDoItemTemplate({todos, category, status, uid}) {
 	const template = `
     <aside class="${categoryStyles(category)} p-4   ">
     <nav class="flex items-center justify-between">
@@ -28,7 +28,7 @@ function toDoItemTemplate({todo, category, status, uid}) {
        
     </nav>
   
-            <p class=" text-lg font-bold text-zinc-700  ">${todo}</p>
+            <p class=" text-lg font-bold text-zinc-700  ">${todos}</p>
 
    
     
