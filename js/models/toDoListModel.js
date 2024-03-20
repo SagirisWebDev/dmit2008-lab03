@@ -1,6 +1,6 @@
 import { get, set, ref, push, child, remove, update } from "firebase/database";
 import { db } from "../lib/firebase/config/firebaseInit";
-import { createStore, removeFromStore } from "./store";
+import { createStore, removeFromStore, updateStore } from "./store";
 
 let observers = [];
 
@@ -29,5 +29,13 @@ export function deleteToDo(uid) {
   const dbRef = ref(db, `todos/${uid}`);
   remove(dbRef);
   const store = removeFromStore(uid);
+  notify(store);
+}
+
+export function updateToDo(updatedToDo) {
+  let payload = updatedToDo;
+  const dbRef = ref(db, `todos/${payload.uid}`);
+  update(dbRef, payload);
+  const store = updateStore(payload);
   notify(store);
 }
